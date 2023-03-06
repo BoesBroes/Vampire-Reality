@@ -6,17 +6,34 @@ public class Gun : MonoBehaviour
 {
     public WeaponController weaponController;
 
-    public GameObject gunProjectile;
+    //public GameObject gunProjectile;
+    public Rigidbody projectileBody; //to save cpu time not having to getcomponent all the time
 
+    public float shootSpeed = 100;
+
+    public Transform cameraTransform;
+
+
+    int frequency = 1;
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartShooting();
+    }
+
+    IEnumerator ShootingFrequency()
+    {
+        yield return new WaitForSeconds(frequency);
+
+        StartShooting();
     }
 
     private void StartShooting()
     {
-        GameObject newProjectile = Instantiate(gunProjectile, transform.position, transform.rotation);
-        //newProjectile.GetComponent<Rigidbody>().velocity = TransformDirection(Vector3(0, 0, weaponController.speed));
+        var newProjectile = Instantiate(projectileBody, transform.position, transform.rotation);
+
+        newProjectile.velocity = cameraTransform.forward * shootSpeed;
+
+        StartCoroutine(ShootingFrequency());
     }
 }
