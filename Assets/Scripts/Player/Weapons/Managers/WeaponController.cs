@@ -10,7 +10,7 @@ public class WeaponController : MonoBehaviour
 
     [Header("Projectile Based Weapons Multiplier")]
     public float projectileSpeed;
-    public float projectileInterval; //how many it shoots a second
+    public float projectileFrequency; //how many it shoots a second
     public int projectileDamage;
     public float projectileKnockback; 
     //TODO; add public float projectileCriticalHit multiplier in the future
