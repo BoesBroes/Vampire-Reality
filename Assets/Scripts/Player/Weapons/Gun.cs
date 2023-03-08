@@ -6,10 +6,12 @@ public class Gun : MonoBehaviour
 {
     public WeaponController weaponController;
 
-    //public GameObject gunProjectile;
-    public Rigidbody projectileBody; //to save cpu time not having to getcomponent all the time
+    public Rigidbody projectileBody; 
 
-    public float shootSpeed = 100;
+    [Header("Weapon stats")]
+    public float shootSpeed = 100f;
+    public int damage = 2;
+    public float knockBack = 1f;
 
     public Transform cameraTransform;
 
@@ -32,9 +34,9 @@ public class Gun : MonoBehaviour
     {
         var newProjectile = Instantiate(projectileBody, transform.position, transform.rotation);
 
-        //newProjectile.AddForce(cameraTransform.forward * shootSpeed);
-
         newProjectile.velocity = cameraTransform.forward * shootSpeed;
+
+        newProjectile.GetComponent<Projectile>().damage = (damage * weaponController.projectileDamage);
 
         StartCoroutine(ShootingFrequency());
     }
