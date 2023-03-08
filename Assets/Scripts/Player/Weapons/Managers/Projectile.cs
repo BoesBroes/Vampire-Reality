@@ -6,9 +6,14 @@ public class Projectile : MonoBehaviour
 {
     public int damage; //set by weapon
 
-    public Transform orientation;
-
     private Rigidbody rb;
+
+
+    public float timeToLive = 5f;
+    private void Start()
+    {
+        Destroy(gameObject, timeToLive);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -19,17 +24,6 @@ public class Projectile : MonoBehaviour
             Destroy(this);
         }
         else
-        {
-            Destroy(this);
-        }
-    }
-
-    //Delete projectile if too far away
-    //Im guessing this is more efficient than waiting for x time or x distance?
-    private void OnTriggerExit(Collider collision)
-    {
-        Debug.Log(collision.gameObject.tag);
-        if(collision.gameObject.tag == "ProjectileSphere")
         {
             Destroy(this);
         }

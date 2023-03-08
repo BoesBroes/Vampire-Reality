@@ -266,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponController: {fileID: 870349367}
   projectileBody: {fileID: 1393256383182658601, guid: 932c14cd4a3e28e428af9ef36a5b1a95, type: 3}
-  shootSpeed: 1000
+  shootSpeed: 50
   cameraTransform: {fileID: 228542502}
 --- !u!1 &870349365
 GameObject:
@@ -675,6 +675,10 @@ PrefabInstance:
     - target: {fileID: 5517440447355607826, guid: ce51e69583f54e642a52be9a500a0922, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517440448312108692, guid: ce51e69583f54e642a52be9a500a0922, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce51e69583f54e642a52be9a500a0922, type: 3}
