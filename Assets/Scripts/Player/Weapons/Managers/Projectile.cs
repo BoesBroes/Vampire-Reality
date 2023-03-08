@@ -17,8 +17,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.tag == "enemy")
+        if (collision.tag == "enemy")
         {
             collision.gameObject.GetComponent<EnemyStats>().LoseHealth(damage);
 

@@ -15,7 +15,6 @@ public class Gun : MonoBehaviour
 
     public Transform cameraTransform;
 
-
     int frequency = 1;
     // Start is called before the first frame update
     void Start()

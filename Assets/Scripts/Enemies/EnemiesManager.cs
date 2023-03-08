@@ -10,6 +10,8 @@ public class EnemiesManager : MonoBehaviour
     public GameObject[] enemy;
 
     public Transform playerPosition;
+
+    public int spawnFrequency;
     //TODO: add a way to spawn a certain type of enemy at certain points in time (maybe override maxEnemies?)
 
     // Start is called before the first frame update
@@ -23,11 +25,16 @@ public class EnemiesManager : MonoBehaviour
     {
         if(currentEnemiesTotal < maxEnemies)
         {
-            //TODO: add some randomizer to not make them spawn all at once
-            SpawnEnemy();
+            //randomizer to not make all enemies spawn at once, needs some sensible update in the feature for balancing maybe? eg lower the number later in the game (see spawnfrequency)
+            int random = Random.Range(1, 100);
+            if(random > spawnFrequency)
+            {
+                SpawnEnemy();
+            }
         }
     }
 
+    //TODO: make this so x type of enemy can be spawned (seperate function for hordes tho)
     private void SpawnEnemy()
     {
         int spawnPointX = Random.Range(-50, 50);

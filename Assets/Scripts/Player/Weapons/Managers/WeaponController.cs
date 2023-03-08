@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    //this is just some boilerplate stuff
     //need to add these kind of variables per type of weapon/ability to upgrade multiple at once
-    //multipliers is what these will be
+    //TODO: think about whether everything is gonna be here (weapons/abilities/hidden upgrades eg movespeed) or seperate (its the first one)
 
     [Header("Projectile Based Weapons Multiplier")]
-    public float projectileSpeed;
-    public float projectileFrequency; //how many it shoots a second
-    public int projectileDamage;
-    public float projectileKnockback; 
+    public float projectileSpeed = 1f;
+    public float projectileFrequency = 1f; //how many it shoots a second
+    public int projectileDamage = 1;
+    public float projectileKnockback = 1f; 
     //TODO; add public float projectileCriticalHit multiplier in the future
 
 }
