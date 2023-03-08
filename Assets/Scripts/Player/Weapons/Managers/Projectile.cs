@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public int damage; //set by weapon
+    public int damage = 1; //set by weapon
 
     private Rigidbody rb;
 
@@ -15,17 +15,14 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, timeToLive);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.GetComponent<EnemyStats>())
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "enemy")
         {
             collision.gameObject.GetComponent<EnemyStats>().LoseHealth(damage);
 
-            Destroy(this);
-        }
-        else
-        {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }

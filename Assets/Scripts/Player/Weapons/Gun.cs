@@ -32,6 +32,8 @@ public class Gun : MonoBehaviour
     {
         var newProjectile = Instantiate(projectileBody, transform.position, transform.rotation);
 
+        //newProjectile.AddForce(cameraTransform.forward * shootSpeed);
+
         newProjectile.velocity = cameraTransform.forward * shootSpeed;
 
         StartCoroutine(ShootingFrequency());

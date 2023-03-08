@@ -17,11 +17,14 @@ public class EnemyStats : MonoBehaviour
     {
         //deal damage and kill enemy if < 0
         //TODO: add points if kill
-        health = -hitPoints;
+        health -= hitPoints;
         if(health <= 0)
         {
             enemiesManager.currentEnemiesTotal--;
-            Destroy(this);
+
+            //before destroy instantiate pickup
+
+            Destroy(gameObject);
         }
     }
 }
