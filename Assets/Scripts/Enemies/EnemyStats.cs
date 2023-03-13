@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
+    //more like enemyManager, but oh well
+
     public int health = 10;
     public float agentSpeed = 2;
 
     public EnemiesManager enemiesManager;
+
+    public GameObject pickupDrop;
     private void Start()
     {
         this.GetComponent<EnemyMovement>().agent.speed = agentSpeed;
@@ -22,7 +26,7 @@ public class EnemyStats : MonoBehaviour
         {
             enemiesManager.currentEnemiesTotal--;
 
-            //before destroy instantiate pickup
+            Instantiate(pickupDrop, gameObject.transform.position, Quaternion.identity);
 
             Destroy(gameObject);
         }

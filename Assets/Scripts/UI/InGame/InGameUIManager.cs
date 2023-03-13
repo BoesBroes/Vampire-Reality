@@ -6,9 +6,8 @@ using UnityEngine.UI;
 
 public class InGameUIManager : MonoBehaviour
 {
-    //boilerplating right here for future reference(tomorrow?)
-    public StatsManager statsManager; //obtain future information from here
-
+    public HealthManager healthManager; 
+    public ExperienceManager experienceManager; 
     public EnemiesManager enemiesManager; //for changing difficulty based on time
 
     [Header("UI Texts")]
@@ -17,14 +16,18 @@ public class InGameUIManager : MonoBehaviour
     private int minutes = 0;
 
     [Header("Weapon Icons")]
-    public Image firstWeapon;
+    public Image[] weapons;
 
     [Header("Ability Icons")]
-    public Image firstAbility;
+    public Image[] abilities;
 
-    [Header("Current stats")] //for now I can only think of health (at least whats useful for the player to see onscreen)
+    [Header("Current stats")] 
     public Slider healthSlider;
+    public Slider experience;
 
+    [Header("Waves)")]
+    public int[] waveEmenies; //x minute will spawn x emenies
+    //TODO: add/unlock new enemies to spawn
 
     private void Start()
     {
@@ -41,6 +44,7 @@ public class InGameUIManager : MonoBehaviour
         {
             minutes++;
             timer = 0;
+            UpdateDifficulty(minutes); //update difficulty every minute (for now?)
         }
 
         //remove or set a "0" before the minute & seconds
@@ -49,28 +53,25 @@ public class InGameUIManager : MonoBehaviour
         {
             timeText.text = minutes + ":" + Mathf.RoundToInt(timer);
         }
-        else if(minutes <= 10 && timer >=10)
+        else if(minutes < 10 && timer >=10)
         {
             timeText.text = "0" + minutes + ":" + Mathf.RoundToInt(timer);
         }
-        else if (minutes <= 10 && timer <= 10)
+        else if (minutes < 10 && timer < 10)
         {
             timeText.text = "0" + minutes + ":0" + Mathf.RoundToInt(timer);
         }
-        else if (minutes >= 10 && timer <= 10)
+        else if (minutes >= 10 && timer < 10)
         {
             timeText.text = minutes + ":0" + Mathf.RoundToInt(timer);
         }
 
-        UpdateDifficulty(timer);
     }
 
     private void UpdateDifficulty(float currentTime)
     {
-        if(currentTime >= 1 && minutes <= 2)
-        {
-            enemiesManager.maxEnemies = 20;
-        }
+        enemiesManager.maxEnemies = waveEmenies[minutes];
+        //if minutes > waveEnemies.length, die
     }
 
 }

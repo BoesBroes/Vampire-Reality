@@ -151,6 +151,7 @@ MonoBehaviour:
   health: 10
   agentSpeed: 2
   enemiesManager: {fileID: 0}
+  pickupDrop: {fileID: 571202843847733733, guid: 58521053d471cae45b4e1f7080341ce8, type: 3}
 --- !u!54 &-8869725248830681760
 Rigidbody:
   m_ObjectHideFlags: 0
