@@ -12,6 +12,8 @@ public class EnemyStats : MonoBehaviour
     public EnemiesManager enemiesManager;
 
     public GameObject pickupDrop;
+
+    public int damage;
     private void Start()
     {
         this.GetComponent<EnemyMovement>().agent.speed = agentSpeed;
