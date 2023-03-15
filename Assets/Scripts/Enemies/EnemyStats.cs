@@ -28,7 +28,12 @@ public class EnemyStats : MonoBehaviour
         {
             enemiesManager.currentEnemiesTotal--;
 
-            Instantiate(pickupDrop, gameObject.transform.position, Quaternion.identity);
+            GameObject pickup = Instantiate(pickupDrop, gameObject.transform.position, Quaternion.identity);
+
+            //set position after spawn (correct y position)
+            pickup.transform.position = new Vector3(transform.position.x, 0.4410394f, transform.position.z);//y position obtained from when agent is activated (not the cleanest I know)
+
+            pickup.GetComponent<Pickup>().playerPosition = this.GetComponent<EnemyMovement>().playerPosition;
 
             Destroy(gameObject);
         }
