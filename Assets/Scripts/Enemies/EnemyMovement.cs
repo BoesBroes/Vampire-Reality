@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
+    public MoveAllEnemies moveAllEnemies;
+
     //the stats are in another class!
     public NavMeshAgent agent;
     public Transform playerPosition;
@@ -13,11 +15,24 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        GoToPlayer();
+        if(!moveAllEnemies.paused)
+        {
+            GoToPlayer();
+        }
+        else
+        {
+            NoDestination();
+        }
     }
 
-    void GoToPlayer()
+    private void GoToPlayer()
     {
         agent.destination = playerPosition.position;
+    }
+
+    private void NoDestination()
+    {
+        //not deactivate, just stay at position
+        agent.destination = gameObject.transform.position;
     }
 }

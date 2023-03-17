@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     float xRotation;
     float yRotation;
 
+    public MoveAllEnemies moveAllEnemies; //yeah naming sucks here but this is easier
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,16 +24,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //mouse input
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * moveX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * moveY;
+        if (!moveAllEnemies.paused)
+        {
+            //mouse input
+            float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * moveX;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * moveY;
 
-        yRotation += mouseX;
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            yRotation += mouseX;
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        //rotate camera
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+            //rotate camera
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        }
     }
 }

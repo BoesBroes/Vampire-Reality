@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class Gun : WeaponController
 {
     public WeaponController weaponController;
+
+    public MoveAllEnemies moveAllEnemies; //yeah naming here sucks too, let it be
 
     public Rigidbody projectileBody; 
 
@@ -31,12 +33,20 @@ public class Gun : MonoBehaviour
 
     private void StartShooting()
     {
-        var newProjectile = Instantiate(projectileBody, transform.position, transform.rotation);
+        if (!moveAllEnemies.paused)
+        {
+            var newProjectile = Instantiate(projectileBody, transform.position, transform.rotation);
 
-        newProjectile.velocity = cameraTransform.forward * shootSpeed;
+            newProjectile.velocity = cameraTransform.forward * shootSpeed;
 
-        newProjectile.GetComponent<Projectile>().damage = (damage * weaponController.projectileDamage);
+            newProjectile.GetComponent<Projectile>().damage = (damage * weaponController.projectileDamage);
+        }
 
         StartCoroutine(ShootingFrequency());
+    }
+
+    public new void UpgradeWeapon()
+    {
+        Debug.Log("test");
     }
 }

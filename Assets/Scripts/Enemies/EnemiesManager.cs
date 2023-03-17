@@ -12,6 +12,8 @@ public class EnemiesManager : MonoBehaviour
     public Transform playerPosition;
 
     public int spawnFrequency;
+
+    public MoveAllEnemies moveAllEnemies;
     //TODO: add a way to spawn a certain type of enemy at certain points in time (maybe override maxEnemies?)
 
     // Start is called before the first frame update
@@ -58,6 +60,8 @@ public class EnemiesManager : MonoBehaviour
 
             enemyInstantiated.GetComponent<EnemyStats>().enemiesManager = this;
             enemyInstantiated.GetComponent<EnemyMovement>().playerPosition = playerPosition;
+            enemyInstantiated.GetComponent<EnemyMovement>().moveAllEnemies = moveAllEnemies;
+
 
             currentEnemiesTotal++;
         }

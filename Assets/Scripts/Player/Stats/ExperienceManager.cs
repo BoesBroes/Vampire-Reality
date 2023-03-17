@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ExperienceManager : MonoBehaviour
 {
+    public UpgradeManager upgradeManager;
+
     public Slider experienceSlider;
     public Text rankText;
 
@@ -18,7 +20,9 @@ public class ExperienceManager : MonoBehaviour
         if(experienceSlider. value == 1)
         {
             //reset slider, increase rank, lower multiplier
-            //TODO: upgrade stuff (or choose new weapons)
+
+            upgradeManager.StartUpgrade();
+
             experienceSlider.value = 0;
             currentRank++;
             experienceMultiplier = experienceMultiplier * .5f;

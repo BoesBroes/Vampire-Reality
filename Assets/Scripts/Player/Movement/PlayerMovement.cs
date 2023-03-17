@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rigidBody;
 
+
+    public bool paused;
+
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -49,7 +52,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if(!paused)
+        {
+            MovePlayer();
+        }
     }
 
     private void PlayerInput()
